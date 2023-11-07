@@ -49,4 +49,4 @@ def removendo():
     escolha_remover = int(input("-"))
     if escolha_remover == 1:
         print("nada ainda")
-
+#
