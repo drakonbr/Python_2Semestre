@@ -4,7 +4,21 @@ enter = "ckas"
 
 path = "livro_lista.txt"
 
+def listar_generos():
+    with open(path, 'r', encoding='utf-8') as file:
+        linhas = file.readlines()
+
+    generos_unicos = set()
+    for linha in linhas:
+        genero = (linha.split(';'))[2]
+        generos_unicos.add(genero)
+
+    print("Gêneros presentes no arquivo:")
+    for genero in generos_unicos:
+        print(genero.title())
+        
 def visualizar():
+    listar_generos()
     op = 0
     f = open(path,'r', encoding='utf-8')
     opr = input('Coloque o gênero que você deseja filtar: ').strip().lower()
@@ -17,7 +31,7 @@ def visualizar():
             print(f'Nome: {nome.title()}, Autor: {autor.title()}, Gênero: {genero.title()} Preço: {valor}')
             op += 1
     f.close()
-
+    voltar = input("Prescione ENTER pra voltar ao Menu\n")
     if op == 0:
         return "Não há livros nessa categoria"
     else:
