@@ -1,2 +1,4 @@
 lukas;lukas;lukas;9.8
 casa monstro;eddigar;terror;80.9
+hp;jk rowling;fantasia;90.0
+zac power;jonas tourini;ação;20.0
