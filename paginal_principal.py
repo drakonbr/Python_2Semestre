@@ -7,13 +7,13 @@ path = "livro_lista.txt"
 def visualizar():
     op = 0
     f = open(path,'r', encoding='utf-8')
-    opr = input('Coloque o gênero que você deseja filtar: ').strip().lower()
+    filtro = input('Coloque o gênero que você deseja filtar: ').strip().lower()
     for l in f:
         nome = (l.split(';'))[0]
         autor = (l.split(';'))[1]
         genero = (l.split(';'))[2]
         valor = (l.split(';'))[3]
-        if opr == genero:
+        if filtro == genero:
             print(f'Nome: {nome.title()}, Autor: {autor.title()}, Gênero: {genero.title()} Preço: {valor}')
             op += 1
     f.close()
