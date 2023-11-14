@@ -1,4 +1,2 @@
-hp;jk rowling;fantasia;45.0
-lotr;tolkien;fantasia;60.0
-casa monstro;ediggar;terror;25.0
-jose;carioca;flouclore;14.4
+lukas;lukas;lukas;9.8
+casa monstro;eddigar;terror;80.9

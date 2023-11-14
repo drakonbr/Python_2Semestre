@@ -1,3 +1,4 @@
+import sys 
 import os
 os.system('cls')
 enter = "ckas"
@@ -49,7 +50,7 @@ def adicionar():
 
 def remover():
     op = 0
-    f = open(path,'r')
+    f = open(path, 'r', encoding='utf-8')
     fr = f.readlines()
     f.close()
 
@@ -57,7 +58,7 @@ def remover():
     removed = input("\033[1;31;43mQual livro você deseja remover: \033[m ").strip().lower()
     for l in fr:
         if removed != (l.split(';'))[0]:
-            f.write(f'{l}\n')
+            f.write(f'{l.rstrip()}\n')
         else:
             op += 1
     f.close()
@@ -66,9 +67,10 @@ def remover():
     else:
         return "Esse livro não está na biblioteca" 
 
+
 def atualizar():
     op = 0
-    f = open(path,'r')
+    f = open(path, 'r', encoding='utf-8')
     fr = f.readlines()
     f.close()
 
@@ -79,24 +81,42 @@ def atualizar():
             autor = input("\033[1;32;49mColoque o nome do autor: \033[m ").strip().lower()
             genero = input("Coloque o gênero do livro: ").strip().lower()
             valor = float(input("\033[1;33;49mColoque o valor do livro: \033[m "))
-            f.write(f'{nome};{autor};{genero};{valor}')
+            f.write(f'{nome};{autor};{genero};{valor}\n')
             op += 1
         else:
-            f.write(f'{l}\n')
+            f.write(f'{l.rstrip()}\n')
     f.close()
     if op >= 1:
         return "Livro Atualizado!"
     else:
-        return "Esse livro não está na biblioteca" 
+        return "Esse livro não está na biblioteca"
+
     
 def desejar():
     return
 def extrato():
-    return
+    total_valor = 0
+    extrato_texto = []
+    
+    with open(path, 'r', encoding='utf-8') as file:
+        for linha in file:
+            nome = (linha.split(';'))[0]
+            valor = float((linha.split(';'))[3])
+            
+            total_valor += valor
+            extrato_texto.append(f'{nome.title()} - Valor: {valor}')
+
+    print("Extrato da conta:")
+    for t in extrato_texto:
+        print(t)
+    
+    print(f'Total: {total_valor}\n')
+    retornar = (input("Prescione ENTER para retornar ao Menu\n"))
+    return ""
 
 def inicio():
     print ("\033[1;32;49m//////Escolha o caminho//////\033[m")
-    print ("1- \033[0;33;49mVisualizar Livros\n\033[m2- \033[0;36;49mAdicionar Livro\n\033[m3- \033[0;31;49mRemover Livro\n\033[m 4- Atualizar Livro\n 5- Lista de Desejos\n 6- Extrato")
+    print ("1- \033[0;33;49mVisualizar Livros\n\033[m2- \033[0;36;49mAdicionar Livro\n\033[m3- \033[0;31;49mRemover Livro\n\033[m 4- Atualizar Livro\n 5- Lista de Desejos\n 6- Extrato\n 7-Encerrar")
     escolha = int(input("> "))
     if escolha == 1:
         print(visualizar())
@@ -110,6 +130,9 @@ def inicio():
         print(desejar())
     elif escolha == 6:
         print(extrato())
+    elif escolha == 7:
+        print("Programa encerrado")
+        sys.exit()
     else:
         print("\033[0;33;41mValor inválido\033[m")
         cetras = input("\033[1;36;49mPressione ENTER\033[m")
@@ -118,3 +141,4 @@ def inicio():
 
 while True:
     inicio()
+
