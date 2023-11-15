@@ -94,7 +94,7 @@ def atualizar():
 
     
 def desejar():
-    escolha = int(input('\033[1;34;49mEscolha entre as opções abaixo:\n 1- Visualizar Lista de Desejos\n 2- Adicionar a Lista de Desejos\n> \033[m'))
+    escolha = int(input('\033[1;34;49mEscolha entre as opções abaixo:\n 1- Visualizar Lista de Desejos\n 2- Adicionar a Lista de Desejos\n 3- Remover livro da Lista de Desejos\n> \033[m'))
     if escolha == 1: 
         f = open(path2, 'r', encoding='utf-8')
         for l in f:
@@ -115,7 +115,25 @@ def desejar():
         f.close()
         return "\033[1;32;49mLivro Desejado!\033[m"
         retornar = (input("\033[1;36;49mPressione ENTER para retornar ao Menu\033[m\n"))
+    elif escolha == 3:
+        op = 0
+        f = open(path2, 'r', encoding='utf-8')
+        fr = f.readlines()
+        f.close()
 
+        f = open(path2, 'w', encoding='utf-8')
+        removed = input("\033[1;36;49mQual livro você deseja remover: \033[m ").strip().lower()
+        for l in fr:
+            if removed != (l.split(';'))[0]:
+                f.write(f'{l.rstrip()}\n')
+            else:
+                op += 1
+        f.close()
+        if op >= 1:
+            return "\033[1;33;49mLivro Removido da Lista de Desejos!\033[m"   
+        else:
+            return "\033[1;31;43mEsse livro não está na Lista de Desejos\033[m"
+        retornar = (input("\033[1;36;49mPressione ENTER para retornar ao Menu\033[m\n"))
 
 
 def extrato():
