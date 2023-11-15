@@ -1,0 +1,3 @@
+silmarillion;tolkien;fantasia;45.0
+call of cthulhu;hp lovecraft;terror;45.0
+1984;george orwell;suspense;30.0

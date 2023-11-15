@@ -4,6 +4,7 @@ os.system('cls')
 enter = "ckas"
 
 path = "livro_lista.txt"
+path2 = "livro_desejo.txt"
 
 def listar_generos():
     with open(path, 'r', encoding='utf-8') as file:
@@ -32,7 +33,7 @@ def visualizar():
             print(f'\033[0;32;49mNome:\033[m {nome.title()}, \033[0;32;49mAutor:\033[m {autor.title()}, \033[0;32;49mGênero:\033[m {genero.title()} \033[0;32;49mPreço:\033[m {valor}')
             op += 1
     f.close()
-    voltar = input("\033[1;36;49mPrescione ENTER pra voltar ao Menu\n\033[m")
+    voltar = input("\033[1;36;49mPressione ENTER pra voltar ao Menu\n\033[m")
     if op == 0:
         return "\033[1;31;49mNão há livros nessa categoria\033[m"
     else:
@@ -93,7 +94,30 @@ def atualizar():
 
     
 def desejar():
-    return
+    escolha = int(input('\033[1;34;49mEscolha entre as opções abaixo:\n 1- Visualizar Lista de Desejos\n 2- Adicionar a Lista de Desejos\n> \033[m'))
+    if escolha == 1: 
+        f = open(path2, 'r', encoding='utf-8')
+        for l in f:
+            nome = (l.split(';'))[0]
+            autor = (l.split(';'))[1]
+            genero = (l.split(';'))[2]
+            valor = (l.split(';'))[3]
+            print(f'\033[0;32;49mNome:\033[m {nome.title()}, \033[0;32;49mAutor:\033[m {autor.title()}, \033[0;32;49mGênero:\033[m {genero.title()} \033[0;32;49mPreço:\033[m {valor}')
+        retornar = (input("\033[1;36;49mPressione ENTER para retornar ao Menu\033[m\n"))
+        return "" 
+    elif escolha == 2:
+        f = open(path2, 'a', encoding='utf-8')
+        livro = input("\033[1;34;49mColoque o nome do livro: \033[m ").strip().lower()
+        autor = input("\033[1;32;49mColoque o nome do autor: \033[m ").strip().lower()
+        genero = input("\033[1;35;49mColoque o gênero do livro: \033[m ").strip().lower()
+        valor = float(input("\033[1;33;49mColoque o valor do livro: \033[m "))
+        f.write(f"{livro};{autor};{genero};{valor}\n")
+        f.close()
+        return "\033[1;32;49mLivro Desejado!\033[m"
+        retornar = (input("\033[1;36;49mPressione ENTER para retornar ao Menu\033[m\n"))
+
+
+
 def extrato():
     total_valor = 0
     extrato_texto = []
@@ -105,13 +129,14 @@ def extrato():
             
             total_valor += valor
             extrato_texto.append(f'{nome.title()} - Valor: {valor}')
+    file.close()
 
     print("\033[1;33;49mExtrato da conta:\033[m")
     for t in extrato_texto:
         print(t)
     
     print(f'Total: {total_valor}\n')
-    retornar = (input("\033[1;36;49mPrescione ENTER para retornar ao Menu\033[m\n"))
+    retornar = (input("\033[1;36;49mPressione ENTER para retornar ao Menu\033[m\n"))
     return ""
 
 def inicio():
