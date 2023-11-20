@@ -153,14 +153,14 @@ def extrato():
     for t in extrato_texto:
         print(t)
     
-    print(f'Total: {total_valor}\n')
+    print(f'Total: R$ {total_valor}\n')
     retornar = (input("\033[1;36;49mPressione ENTER para retornar ao Menu\033[m\n"))
     return ""
 
 def inicio():
-    print ("\033[1;32;49m//////Escolha o caminho//////\033[m")
+    print ("\033[1;32;49m<=-====-=> Escolha o caminho <=-====-=>\033[m\n")
     print ("1- \033[0;33;49mVisualizar Livros\n\033[m2- \033[0;36;49mAdicionar Livro\n\033[m3- \033[0;31;49mRemover Livro\n\033[m4- \033[0;32;49mAtualizar Livro\n\033[m5- \033[0;31;49mLista de Desejos\n\033[m6- \033[0;33;49mExtrato\n\033[m7- \033[0;31;49mEncerrar\033[m")
-    escolha = int(input("> "))
+    escolha = int(input("\n> "))
     if escolha == 1:
         print(visualizar())
     elif escolha == 2:
