@@ -30,7 +30,7 @@ def listar_generos():
 def visualizar():
     try:   
         listar_generos()
-        op = 0
+        operacao = 0
         f = open(path,'r', encoding='utf-8')
         filtro = input('\033[1;34;49mColoque o gênero que você deseja filtar:\033[m ').strip().lower()
         for l in f:
@@ -40,10 +40,10 @@ def visualizar():
             valor = (l.split(';'))[3]
             if filtro == genero:
                 print(f'\033[0;32;49mNome:\033[m {nome.title()}, \033[0;32;49mAutor:\033[m {autor.title()}, \033[0;32;49mGênero:\033[m {genero.title()} \033[0;32;49mPreço:\033[m {valor}')
-                op += 1
+                operacao += 1
         f.close()
         voltar = input("\033[1;36;49mPressione ENTER pra voltar ao Menu\n\033[m")
-        if op == 0:
+        if operacao == 0:
             return "\033[1;31;49mNão há livros nessa categoria\033[m"
         else:
             return ""
@@ -82,7 +82,7 @@ def adicionar():
 
 def remover():
     try:
-        op = 0
+        operacao = 0
         with open(path, 'r', encoding='utf-8') as f:
             fr = f.readlines()
 
@@ -92,9 +92,9 @@ def remover():
                 if removed != (l.split(';'))[0]:
                     f.write(f'{l.rstrip()}\n')
                 else:
-                    op += 1
+                    operacao += 1
 
-        if op >= 1:
+        if operacao >= 1:
             return "\033[1;33;49mLivro Removido!\033[m"   
         else:
             return "\033[1;31;43mEsse livro não está na biblioteca\033[m"
@@ -111,7 +111,7 @@ def remover():
 
 def atualizar():
     try:
-        op = 0
+        operacao = 0
         with open(path, 'r', encoding='utf-8') as f:
             fr = f.readlines()
 
@@ -123,11 +123,11 @@ def atualizar():
                     genero = input("\033[1;35;49mColoque o gênero do livro:\033[m ").strip().lower()
                     valor = float(input("\033[1;33;49mColoque o valor do livro: \033[m "))
                     f.write(f'{nome};{autor};{genero};{valor}\n')
-                    op += 1
+                    operacao += 1
                 else:
                     f.write(f'{l.rstrip()}\n')
 
-        if op >= 1:
+        if operacao >= 1:
             return "\033[1;32;49mLivro Atualizado!\033[m"
         else:
             return "\033[1;31;43mEsse livro não está na biblioteca\033[m"
@@ -164,19 +164,19 @@ def desejar():
             return "\033[1;32;49mLivro Desejado!\033[m"
             retornar = (input("\033[1;36;49mPressione ENTER para retornar ao Menu\033[m\n"))
         elif escolha == 3:
-            op = 0
+            operacao = 0
             with open(path2, 'r', encoding='utf-8') as f:
                 fr = f.readlines()
 
             with open(path2, 'w', encoding='utf-8') as f:
-                removed = input("\033[1;36;49mQual livro você deseja remover: \033[m ").strip().lower()
+                livro_remover = input("\033[1;36;49mQual livro você deseja remover: \033[m ").strip().lower()
                 for l in fr:
-                    if removed != (l.split(';'))[0]:
+                    if livro_remover != (l.split(';'))[0]:
                         f.write(f'{l.rstrip()}\n')
                     else:
-                        op += 1
+                        operacao += 1
 
-            if op >= 1:
+            if operacao >= 1:
                 return "\033[1;33;49mLivro Removido da Lista de Desejos!\033[m"   
             else:
                 return "\033[1;31;43mEsse livro não está na Lista de Desejos\033[m"
