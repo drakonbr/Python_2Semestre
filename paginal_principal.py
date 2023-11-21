@@ -11,6 +11,7 @@ def listar_generos():
         with open(path, 'r', encoding='utf-8') as file:
             linhas = file.readlines()
     except FileNotFoundError:
+        open(path,'a',encoding='utf-8')
         return "\033[1;31;49mArquivo não encontrado!\033[m"
     except NameError as ne:
         return f"\033[1;31;49mErro de nome: {ne}\033[m"
