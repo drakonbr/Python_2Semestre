@@ -7,8 +7,13 @@ path = "livro_lista.txt"
 path2 = "livro_desejo.txt"
 
 def listar_generos():
-    with open(path, 'r', encoding='utf-8') as file:
-        linhas = file.readlines()
+    try:
+        with open(path, 'r', encoding='utf-8') as file:
+            linhas = file.readlines()
+    except FileNotFoundError:
+        return "\033[1;31;49mArquivo não encontrado!\033[m"
+    except Exception as e:
+        return f"\033[1;31;49mErro: {e}\033[m"
 
     generos_unicos = set()
     for linha in linhas:
@@ -20,53 +25,73 @@ def listar_generos():
         print(genero.title())
         
 def visualizar():
-    listar_generos()
-    op = 0
-    f = open(path,'r', encoding='utf-8')
-    filtro = input('\033[1;34;49mColoque o gênero que você deseja filtar:\033[m ').strip().lower()
-    for l in f:
-        nome = (l.split(';'))[0]
-        autor = (l.split(';'))[1]
-        genero = (l.split(';'))[2]
-        valor = (l.split(';'))[3]
-        if filtro == genero:
-            print(f'\033[0;32;49mNome:\033[m {nome.title()}, \033[0;32;49mAutor:\033[m {autor.title()}, \033[0;32;49mGênero:\033[m {genero.title()} \033[0;32;49mPreço:\033[m {valor}')
-            op += 1
-    f.close()
-    voltar = input("\033[1;36;49mPressione ENTER pra voltar ao Menu\n\033[m")
-    if op == 0:
-        return "\033[1;31;49mNão há livros nessa categoria\033[m"
-    else:
-        return ""
+    try:   
+        listar_generos()
+        op = 0
+        f = open(path,'r', encoding='utf-8')
+        filtro = input('\033[1;34;49mColoque o gênero que você deseja filtar:\033[m ').strip().lower()
+        for l in f:
+            nome = (l.split(';'))[0]
+            autor = (l.split(';'))[1]
+            genero = (l.split(';'))[2]
+            valor = (l.split(';'))[3]
+            if filtro == genero:
+                print(f'\033[0;32;49mNome:\033[m {nome.title()}, \033[0;32;49mAutor:\033[m {autor.title()}, \033[0;32;49mGênero:\033[m {genero.title()} \033[0;32;49mPreço:\033[m {valor}')
+                op += 1
+        f.close()
+        voltar = input("\033[1;36;49mPressione ENTER pra voltar ao Menu\n\033[m")
+        if op == 0:
+            return "\033[1;31;49mNão há livros nessa categoria\033[m"
+        else:
+            return ""
+    except FileNotFoundError:
+        return "\033[1;31;49mArquivo não encontrado!\033[m"
+    except ValueError:
+        return "\033[1;31;49mErro de valor!\033[m"
+    except Exception as e:
+        return f"\033[1;31;49mErro: {e}\033[m"
 
 def adicionar():
-    f = open(path, 'a', encoding='utf-8')
-    livro = input("\033[1;34;49mColoque o nome do livro: \033[m ").strip().lower()
-    autor = input("\033[1;32;49mColoque o nome do autor: \033[m ").strip().lower()
-    genero = input("\033[1;35;49mColoque o gênero do livro: \033[m ").strip().lower()
-    valor = float(input("\033[1;33;49mColoque o valor do livro: \033[m "))
-    f.write(f"{livro};{autor};{genero};{valor}\n")
-    f.close()
-    return "\033[1;32;49mLivro Adicionado!\033[m"
+    try:
+        f = open(path, 'a', encoding='utf-8')
+        livro = input("\033[1;34;49mColoque o nome do livro: \033[m ").strip().lower()
+        autor = input("\033[1;32;49mColoque o nome do autor: \033[m ").strip().lower()
+        genero = input("\033[1;35;49mColoque o gênero do livro: \033[m ").strip().lower()
+        valor = float(input("\033[1;33;49mColoque o valor do livro: \033[m "))
+        f.write(f"{livro};{autor};{genero};{valor}\n")
+        f.close()
+        return "\033[1;32;49mLivro Adicionado!\033[m"
+
+    except FileNotFoundError:
+        return "\033[1;31;49mArquivo não encontrado!\033[m"
+    except ValueError:
+        return "\033[1;31;49mErro de valor!\033[m"
+    except Exception as e:
+        return f"\033[1;31;49mErro: {e}\033[m"
 
 def remover():
-    op = 0
-    f = open(path, 'r', encoding='utf-8')
-    fr = f.readlines()
-    f.close()
+    try:
+        op = 0
+        with open(path, 'r', encoding='utf-8') as f:
+            fr = f.readlines()
 
-    f = open(path, 'w', encoding='utf-8')
-    removed = input("\033[1;36;49mQual livro você deseja remover: \033[m ").strip().lower()
-    for l in fr:
-        if removed != (l.split(';'))[0]:
-            f.write(f'{l.rstrip()}\n')
+        with open(path, 'w', encoding='utf-8') as f:
+            removed = input("\033[1;36;49mQual livro você deseja remover: \033[m ").strip().lower()
+            for l in fr:
+                if removed != (l.split(';'))[0]:
+                    f.write(f'{l.rstrip()}\n')
+                else:
+                    op += 1
+
+        if op >= 1:
+            return "\033[1;33;49mLivro Removido!\033[m"   
         else:
-            op += 1
-    f.close()
-    if op >= 1:
-        return "\033[1;33;49mLivro Removido!\033[m"   
-    else:
-        return "\033[1;31;43mEsse livro não está na biblioteca\033[m"
+            return "\033[1;31;43mEsse livro não está na biblioteca\033[m"
+
+    except FileNotFoundError:
+        return "\033[1;31;49mArquivo não encontrado!\033[m"
+    except Exception as e:
+        return f"\033[1;31;49mErro: {e}\033[m"
 
 
 def atualizar():
