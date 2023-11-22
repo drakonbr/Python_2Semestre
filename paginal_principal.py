@@ -150,7 +150,10 @@ def desejar():
         if escolha == 1: 
             with open(path2, 'r', encoding='utf-8') as f:
                 for l in f:
-                    nome, autor, genero, valor = map(lambda x: x.strip(), l.split(';'))
+                    nome = (l.split(';'))[0]
+                    autor = (l.split(';'))[1]
+                    genero = (l.split(';'))[2]
+                    valor = (l.split(';'))[3]
                     print(f'\033[0;32;49mNome:\033[m {nome.title()}, \033[0;32;49mAutor:\033[m {autor.title()}, \033[0;32;49mGênero:\033[m {genero.title()} \033[0;32;49mPreço:\033[m {valor}')
             retornar = (input("\033[1;36;49mPressione ENTER para retornar ao Menu\033[m\n"))
             return "" 
@@ -201,10 +204,12 @@ def extrato():
         
         with open(path, 'r', encoding='utf-8') as file:
             for linha in file:
-                nome, _, _, valor = map(lambda x: x.strip(), linha.split(';'))
-                valor = float(valor)
+                nome = (linha.split(';'))[0]
+                valor = float((linha.split(';'))[3])
+
                 total_valor += valor
                 extrato_texto.append(f'{nome.title()} - Valor: {valor}')
+        file.close()
 
         print("\033[1;33;49mExtrato da conta:\033[m")
         for t in extrato_texto:
