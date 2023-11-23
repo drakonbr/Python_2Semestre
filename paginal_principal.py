@@ -208,8 +208,8 @@ def desejar():
             if operacao >= 1:
                 return "\033[1;33;49mLivro Removido da Lista de Desejos!\033[m"   
             else:
-                return "\033[1;31;43mEsse livro não está na Lista de Desejos\033[m"
-            retornar = (input("\033[1;36;49mPressione ENTER para retornar ao Menu\033[m\n"))
+                print( "\033[1;31;43mEsse livro não está na Lista de Desejos\033[m")
+                return (input("\033[1;36;49mPressione ENTER para retornar ao Menu\033[m\n"))
 
     except FileNotFoundError:
         return "\033[1;31;49mArquivo não encontrado!\033[m"
