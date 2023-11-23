@@ -64,7 +64,13 @@ def adicionar():
         livro = input("\033[1;34;49mColoque o nome do livro: \033[m ").strip().lower()
         autor = input("\033[1;32;49mColoque o nome do autor: \033[m ").strip().lower()
         genero = input("\033[1;35;49mColoque o gênero do livro: \033[m ").strip().lower()
-        valor = float(input("\033[1;33;49mColoque o valor do livro: \033[m "))
+        while(True):
+            try:
+                valor = float(input("\033[1;33;49mColoque o valor do livro: \033[m "))
+                if type(valor) == float:
+                    break
+            except ValueError:
+                print("\033[1;31;49mErro de valor! Digite novamente\033[m")
         f.write(f"{livro};{autor};{genero};{valor}\n")
         f.close()
         "\033[1;32;49mLivro Adicionado!\033[m"
@@ -124,7 +130,13 @@ def atualizar():
                 if nome == (l.split(';'))[0]:
                     autor = input("\033[1;32;49mColoque o nome do autor: \033[m ").strip().lower()
                     genero = input("\033[1;35;49mColoque o gênero do livro:\033[m ").strip().lower()
-                    valor = float(input("\033[1;33;49mColoque o valor do livro: \033[m "))
+                    while(True):
+                        try:
+                            valor = float(input("\033[1;33;49mColoque o valor do livro: \033[m "))
+                            if type(valor) == float:
+                                break
+                        except ValueError:
+                            print("\033[1;31;49mErro de valor! Digite novamente\033[m")
                     f.write(f'{nome};{autor};{genero};{valor}\n')
                     operacao += 1
                 else:
@@ -165,7 +177,13 @@ def desejar():
                 livro = input("\033[1;34;49mColoque o nome do livro: \033[m ").strip().lower()
                 autor = input("\033[1;32;49mColoque o nome do autor: \033[m ").strip().lower()
                 genero = input("\033[1;35;49mColoque o gênero do livro: \033[m ").strip().lower()
-                valor = float(input("\033[1;33;49mColoque o valor do livro: \033[m "))
+                while(True):
+                    try:
+                        valor = float(input("\033[1;33;49mColoque o valor do livro: \033[m "))
+                        if type(valor) == float:
+                            break
+                    except ValueError:
+                        print("\033[1;31;49mErro de valor! Digite novamente\033[m")
                 f.write(f"{livro};{autor};{genero};{valor}\n")
             return "\033[1;32;49mLivro Desejado!\033[m"
             retornar = (input("\033[1;36;49mPressione ENTER para retornar ao Menu\033[m\n"))
