@@ -11,4 +11,4 @@ O projeto consiste em um CRUD, com proposito de ser uma biblioteca pessoal, em q
 
 ## Documentação
 [Manual de Instruções.pdf](https://github.com/drakonbr/Python_2Semestre/files/13448726/Manual.de.Instrucoes.pdf)
-![Fluxograma](https://github.com/drakonbr/Python_2Semestre/assets/142418286/14439ca9-c137-4273-8904-67d17ef32150)
+[Fluxograma](https://github.com/drakonbr/Python_2Semestre/assets/142418286/14439ca9-c137-4273-8904-67d17ef32150)
