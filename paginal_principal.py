@@ -67,12 +67,14 @@ def adicionar():
         valor = float(input("\033[1;33;49mColoque o valor do livro: \033[m "))
         f.write(f"{livro};{autor};{genero};{valor}\n")
         f.close()
-        return "\033[1;32;49mLivro Adicionado!\033[m"
+        "\033[1;32;49mLivro Adicionado!\033[m"
+        return input("\nAperte enter para continuar\n>")
+
 
     except FileNotFoundError:
         return "\033[1;31;49mArquivo não encontrado!\033[m"
     except ValueError:
-        return "\033[1;31;49mErro de valor!\033[m"
+        return "\033[1;31;49mErro de valor!\033[m
     except NameError as ne:
         return f"\033[1;31;49mErro de nome: {ne}\033[m"
     except TypeError as te:

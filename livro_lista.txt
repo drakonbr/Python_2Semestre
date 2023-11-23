@@ -3,3 +3,6 @@ casa monstro;eddigar;terror;80.9
 hp;jk rowling;fantasia;90.0
 zac power;jonas tourini;ação;20.0
 lord of the rings;tolkien;fantasia;45.0
+vasco;serie 8;comedia;50.0
+teste;teste;teste;10.0
+testado;testado;teste;20.0
