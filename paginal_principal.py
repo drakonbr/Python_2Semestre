@@ -42,11 +42,11 @@ def visualizar():
                 print(f'\033[0;32;49mNome:\033[m {nome.title()}, \033[0;32;49mAutor:\033[m {autor.title()}, \033[0;32;49mGênero:\033[m {genero.title()} \033[0;32;49mPreço:\033[m {valor}')
                 operacao += 1
         f.close()
-        voltar = input("\033[1;36;49mPressione ENTER pra voltar ao Menu\n\033[m")
         if operacao == 0:
-            return "\033[1;31;49mNão há livros nessa categoria\033[m"
+            print("\033[1;31;49mNão há livros nessa categoria\n\033[m")
+            return input("\033[1;36;49mPressione ENTER pra voltar ao Menu\n\033[m")
         else:
-            return ""
+            return input("\033[1;36;49mPressione ENTER pra voltar ao Menu\n\033[m")
     except FileNotFoundError:
         return "\033[1;31;49mArquivo não encontrado!\033[m"
     except ValueError:
@@ -68,7 +68,7 @@ def adicionar():
         f.write(f"{livro};{autor};{genero};{valor}\n")
         f.close()
         "\033[1;32;49mLivro Adicionado!\033[m"
-        return input("\nAperte enter para continuar\n>")
+        return input("\033[1;36;49mPressione ENTER pra voltar ao Menu\n\033[m")
 
 
     except FileNotFoundError:
@@ -97,7 +97,8 @@ def remover():
                     operacao += 1
 
         if operacao >= 1:
-            return "\033[1;33;49mLivro Removido!\033[m"   
+            print("\033[1;33;49mLivro Removido!\033[m")
+            return input("\033[1;36;49mPressione ENTER pra voltar ao Menu\n\033[m")   
         else:
             return "\033[1;31;43mEsse livro não está na biblioteca\033[m"
 
@@ -218,8 +219,7 @@ def extrato():
             print(t)
         
         print(f'Total: R$ {total_valor}\n')
-        retornar = (input("\033[1;36;49mPressione ENTER para retornar ao Menu\033[m\n"))
-        return ""
+        return input("\033[1;36;49mPressione ENTER pra voltar ao Menu\n\033[m")
 
     except FileNotFoundError:
         return "\033[1;31;49mArquivo não encontrado!\033[m"
