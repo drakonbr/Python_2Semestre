@@ -74,7 +74,7 @@ def adicionar():
     except FileNotFoundError:
         return "\033[1;31;49mArquivo não encontrado!\033[m"
     except ValueError:
-        return "\033[1;31;49mErro de valor!\033[m
+        return "\033[1;31;49mErro de valor!\033[m"
     except NameError as ne:
         return f"\033[1;31;49mErro de nome: {ne}\033[m"
     except TypeError as te:
